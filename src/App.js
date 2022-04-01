@@ -21,9 +21,6 @@ function App() {
         }
     },[]);
     return <>
-    <head>
-    <script src={"https://assets-cdn.froogal.ai/loyalty-sdk/v1.1.18/index.js"}></script>
-    </head>
     <section>
       <div>hello</div>
         <div ref={froogalRef}></div>
