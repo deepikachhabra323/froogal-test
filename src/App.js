@@ -1,25 +1,35 @@
 import logo from './logo.svg';
 import './App.css';
+import { useRef, useEffect } from "react";
+// import { initialize,initializeActiveBenefits } from'@froogal.ai/loyalty-sdk-js';
+// import '@froogal.ai/loyalty-sdk-js/dist/index.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  let froogalRef = useRef(null);
+    useEffect(()=>{
+      // console.log(initialize)
+      const existingScript = froogalRef.current;
+        if (existingScript) {
+            const script = document.createElement('script');
+            script.src = 'https://assets-cdn.froogal.ai/loyalty-sdk/v1.1.18/index.js';
+            script.id = 'froogal';
+            document.body.appendChild(script);
+            script.onload = () => { 
+                console.log(initialize)
+            debugger
+            };
+        }
+    },[]);
+    return <>
+    <head>
+    <script src={"https://assets-cdn.froogal.ai/loyalty-sdk/v1.1.18/index.js"}></script>
+    </head>
+    <section>
+      <div>hello</div>
+        <div ref={froogalRef}></div>
+    </section></>
+  
 }
 
 export default App;
+
